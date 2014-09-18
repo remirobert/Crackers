@@ -4,7 +4,6 @@
 </p>
 
 Stop to get worked up, use Crackers !
-
 Crackers is an **HTTP networking** library written in Swift, for **OSX** and **iOS**.
 
 <h1 align="center">Feature</h1>
@@ -67,7 +66,6 @@ requestGet.requestGET { (data, response, error) -> () in
   }
 }
 ```
-
 Currently used in a personnal work.
 
 <h1 align="center">Author</h1>
