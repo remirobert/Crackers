@@ -55,7 +55,7 @@ requestPost.requestPOST { (data, response, error) -> () in
 ```Swift
 let requestGet = Crackers(url: "http://httpbin.org/get")
         
-requestGet.setAutorizationHeader("remi", password: "github")
+requestGet.setAutorizationHeader("remi", "github")
         
 requestGet.requestGET { (data, response, error) -> () in
   if (error == nil) {
