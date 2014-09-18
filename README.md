@@ -3,7 +3,7 @@
   <h1 align="center">Crackers</h1>
 </p>
 
-Stop to get worked up, use crackers for all networking call !
+Stop to get worked up, use Crackers !
 
 Crackers is an **HTTP networking** library written in Swift, for **OSX** and **iOS**.
 
