@@ -39,6 +39,7 @@ var parameters = Dictionary<String, String>()
 parameters["username"] = "remi"
 parameters["password"] = "github"
         
+requestPost.setParameters(parameters)
 requestPost.setHeader("application/json", headerField: "Content-Type")
         
 requestPost.requestPOST { (data, response, error) -> () in
