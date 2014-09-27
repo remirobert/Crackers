@@ -10,7 +10,7 @@ import UIKit
 
 extension NSData {
     func convertToJson() -> String {
-        return NSString(bytes: self.bytes, length: self.length, encoding: NSUTF8StringEncoding)
+        return NSString(bytes: self.bytes, length: self.length, encoding: NSUTF8StringEncoding)!
     }
 }
 
@@ -71,7 +71,7 @@ class Crackers {
             completion(data: nil, response: nil, error: error)
             }, finish: { (data, response) -> () in
                 completion(data: data, response: response, error: nil)
-        }))
+        }))!
         connexion.start()
     }
 
@@ -97,7 +97,7 @@ class Crackers {
     }
     
     init(url: String) {
-        self.request = NSMutableURLRequest(URL: NSURL(string: url))
+        self.request = NSMutableURLRequest(URL: NSURL(string: url)!)
         self.request.timeoutInterval = 60
     }
 }
