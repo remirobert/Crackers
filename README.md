@@ -20,7 +20,7 @@ Crackers is an **HTTP networking** library written in Swift, for **OSX** and **i
 ```Swift
 let requestGet = Crackers(url: "http://httpbin.org/get")
 
-requestGet.requestGET { (data, response, error) -> () in
+requestGet.sendRequest(.GET, blockCompletion: { (data, response, error) -> () in
   if (error == nil) {
     println("request success ! \(response), \(data)")
   }
@@ -42,7 +42,7 @@ parameters["password"] = "github"
 requestPost.setParameters(parameters)
 requestPost.setHeader("application/json", headerField: "Content-Type")
         
-requestPost.requestPOST { (data, response, error) -> () in
+requestPost.sendRequest(.POST, blockCompletion: { (data, response, error) -> () in
   if (error == nil) {
     println("request success ! \(response), \(data)")
   }
@@ -59,7 +59,7 @@ let requestGet = Crackers(url: "http://httpbin.org/get")
         
 requestGet.setAutorizationHeader("remi", "github")
         
-requestGet.requestGET { (data, response, error) -> () in
+requestGet.sendRequest(.POST, blockCompletion: { (data, response, error) -> () in
   if (error == nil) {
     println("request success ! \(response), \(data)")
   }
