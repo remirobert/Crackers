@@ -8,6 +8,13 @@
 
 import UIKit
 
+enum RequestType: String {
+    case POST = "POST"
+    case GET = "GET"
+    case PUT = "PUT"
+    case DELETE = "DELETE"
+}
+
 extension NSData {
     func convertToJson() -> String {
         return NSString(bytes: self.bytes, length: self.length, encoding: NSUTF8StringEncoding)!
@@ -19,7 +26,7 @@ class CrackersDelegate :NSObject, NSURLConnectionDataDelegate {
     var crackersDelegateconnectionDidFinishLoading: (receivedData: NSData?, response: NSURLResponse?) -> ()
     var crackersReceiveData: NSMutableData?
     var crackersResponseRequest: NSURLResponse?
-    
+        
     func connection(connection: NSURLConnection, didFailWithError error: NSError) {
         self.crackersDelegatedidFailWithError(error: error)
     }
@@ -75,29 +82,22 @@ class Crackers {
         connexion.start()
     }
 
-    func requestPOST(completion: (data: NSData?, response: NSURLResponse?, error: NSError?) -> ()) {
-        self.makeRequest("POST", completion)
+    func sendRequest(type:RequestType, blockCompletion completion: (data: NSData?, response: NSURLResponse?, error: NSError?) -> ()) {
+        self.makeRequest(type.rawValue, completion: completion)
     }
     
-    func requestGET(completion: (data: NSData?, response: NSURLResponse?, error: NSError?) -> ()) {
-        self.makeRequest("GET", completion)
-    }
-    
-    func requestPUT(completion: (data: NSData?, response: NSURLResponse?, error: NSError?) -> ()) {
-        self.makeRequest("PUT", completion)
-    }
-
-    func requestDELETE(completion: (data: NSData?, response: NSURLResponse?, error: NSError?) -> ()) {
-        self.makeRequest("DELETE", completion)
+    private func initRequestParameter() {
+        self.request.timeoutInterval = 60
+        self.request.cachePolicy = NSURLRequestCachePolicy.ReturnCacheDataElseLoad
     }
     
     init() {
         self.request = NSMutableURLRequest()
-        self.request.timeoutInterval = 60
+        self.initRequestParameter()
     }
     
     init(url: String) {
         self.request = NSMutableURLRequest(URL: NSURL(string: url)!)
-        self.request.timeoutInterval = 60
+        self.initRequestParameter()
     }
 }
