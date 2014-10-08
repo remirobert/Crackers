@@ -26,7 +26,12 @@ class CrackersDelegate :NSObject, NSURLConnectionDataDelegate {
     var crackersDelegateconnectionDidFinishLoading: (receivedData: NSData?, response: NSURLResponse?) -> ()
     var crackersReceiveData: NSMutableData?
     var crackersResponseRequest: NSURLResponse?
-        
+    
+    func connection(connection: NSURLConnection, willCacheResponse cachedResponse: NSCachedURLResponse) -> NSCachedURLResponse? {
+        println("cache response")
+        return cachedResponse
+    }
+    
     func connection(connection: NSURLConnection, didFailWithError error: NSError) {
         self.crackersDelegatedidFailWithError(error: error)
     }
@@ -74,6 +79,7 @@ class Crackers {
 
     private func makeRequest(httpMethod: String, completion:(data: NSData?, response: NSURLResponse?, error: NSError?) -> ()) {
         self.request.HTTPMethod = httpMethod
+
         var connexion :NSURLConnection = NSURLConnection(request: self.request, delegate: CrackersDelegate(error: { (error) -> () in
             completion(data: nil, response: nil, error: error)
             }, finish: { (data, response) -> () in
@@ -88,7 +94,7 @@ class Crackers {
     
     private func initRequestParameter() {
         self.request.timeoutInterval = 60
-        self.request.cachePolicy = NSURLRequestCachePolicy.ReturnCacheDataElseLoad
+        self.request.cachePolicy = NSURLRequestCachePolicy.UseProtocolCachePolicy
     }
     
     init() {
