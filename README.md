@@ -21,13 +21,13 @@ Crackers is an **HTTP networking** library written in Swift, for **OSX** and **i
 let requestGet = Crackers(url: "http://httpbin.org/get")
 
 requestGet.sendRequest(.GET, blockCompletion: { (data, response, error) -> () in
-  if (error == nil) {
+if (error == nil) {
     println("request success ! \(response), \(data)")
   }
   else {
     println("\(error)")
   }
-}
+})
 ```
 
 <h3 align="center">POST Request with parameters</h3>
@@ -49,7 +49,7 @@ requestPost.sendRequest(.POST, blockCompletion: { (data, response, error) -> () 
   else {
     println("\(error)")
   }
-}
+})
 ```
 
 <h3 align="center">HTTP Basic Authentication</h3>
@@ -66,7 +66,7 @@ requestGet.sendRequest(.POST, blockCompletion: { (data, response, error) -> () i
   else {
     println("\(error)")
   }
-}
+})
 ```
 Currently used in a personnal work.
 
